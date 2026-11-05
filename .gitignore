@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# AI models and generated indexes
+models/
+chroma_db/
+data/indexes/
+
+# IDE and OS
+.vscode/
+.DS_Store
+
+# Logs
+*.log
