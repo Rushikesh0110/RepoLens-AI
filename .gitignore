@@ -30,3 +30,17 @@ data/indexes/
 
 # Logs
 *.log
+
+# Python testing and linting caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Credentials and private keys
+*.pem
+id_rsa
+id_ed25519
+
+# Streamlit secrets
+.streamlit/secrets.toml
