@@ -1,5 +1,9 @@
+from pathlib import Path
+from unittest.mock import patch
 
-from repolens.ingestion import scan_repository
+import pytest
+
+from repolens.ingestion import inspect_file, scan_repository
 
 
 def test_scans_python_files(tmp_path):
@@ -62,3 +66,42 @@ def test_rejects_missing_repository(tmp_path):
         assert False, "Expected FileNotFoundError"
     except FileNotFoundError:
         pass
+
+def test_skips_oversized_file(tmp_path):
+    large_file=tmp_path / "large.py"
+    large_file.write_text("abcdefghij")
+    result = scan_repository(tmp_path,max_file_size=5)
+    assert result.total_files == 1
+    record = result.files[0]
+    assert record.size_bytes == 10
+    assert record.line_count is None
+    assert record.skipped_reason == "File exceeds size limit"
+
+def test_hndles_empty_files(tmp_path):
+    empty_file = tmp_path / "empty.py"
+    empty_file.write_text("")
+    result = scan_repository(tmp_path)
+    assert result.total_files ==1
+    record= result.files[0]
+    assert record.size_bytes == 0
+    assert record.line_count == 0
+    assert record.skipped_reason is None
+
+def test_rejects_invalid_file_size(tmp_path):
+    with pytest.raises(ValueError):
+        scan_repository(tmp_path, max_file_size=0)
+
+def test_handles_file_access_error(tmp_path):
+    test_file = tmp_path / "example.py"
+    test_file.write_text("print('hello')")
+
+    with patch.object(
+        Path, "open",
+        side_effect=PermissionError("Permission denied")
+    ):
+        record, error = inspect_file(
+            test_file, "example.py", 1000
+        )
+
+    assert record is None
+    assert "Permission denied" in error

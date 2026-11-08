@@ -84,7 +84,6 @@ def inspect_file(path: Path, relative_path: str,
                 ),
                 None,
             )
-
         line_count = content.count(b"\n")
 
         if content and not content.endswith(b"\n"):
