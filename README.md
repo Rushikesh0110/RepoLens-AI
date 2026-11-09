@@ -2,7 +2,7 @@
 
 **A local-first AI-powered codebase intelligence platform.**
 
-RepoLens AI aims to help developers understand unfamiliar codebases through repository analysis, semantic code search, AI-powered question answering, and evidence-based bug investigation.
+RepoLens AI aims to help developers understand unfamiliar codebases through repository analysis, code structure extraction, semantic search, AI-powered question answering, and evidence-based bug investigation.
 
 ## Vision
 
@@ -11,39 +11,46 @@ Build an intelligent developer assistant that understands how a software reposit
 ## Core Features
 
 ### Implemented
+
 - Local repository ingestion and scanning
 - File metadata extraction and repository statistics
 - File filtering and exclusion rules
 - Binary and oversized file detection
 - File-access error handling
 - Command-line repository scanning
+- Python AST-based code structure extraction
+- Function and asynchronous function detection
+- Class and method identification
+- Import, alias, and relative import extraction
+- Syntax-error handling during code extraction
 - Automated testing with Pytest
 
 ### Planned
-- Code structure and symbol extraction
-- Repository analytics and visualization
+
+- Advanced repository analytics and visualization
 - Semantic code search
 - Retrieval-Augmented Generation (RAG)
+- Local LLM integration
 - Evidence-based codebase question answering
 - AI-assisted bug investigation
 - Retrieval and answer evaluation
+- Interactive developer interface
 
 ## Technology Stack
 
 | Category | Technology |
 |---|---|
 | Language | Python |
+| Code Analysis | Python AST |
+| Testing | Pytest |
+| Code Quality | Ruff |
+| Version Control | Git and GitHub |
 | Frontend | Streamlit (planned) |
 | Backend API | FastAPI (planned) |
 | Local LLM | Ollama + Qwen3 4B (planned) |
-| Code Analysis | Python AST |
-| Data Processing | NumPy, Pandas |
-| Machine Learning | Scikit-learn |
-| Embeddings | Sentence Transformers |
-| Vector Database | ChromaDB |
-| Storage | SQLite |
-| Testing | Pytest |
-| Code Quality | Ruff |
+| Embeddings | Sentence Transformers (planned) |
+| Vector Database | ChromaDB (planned) |
+| Storage | SQLite (planned) |
 
 ## Development Philosophy
 
@@ -55,28 +62,31 @@ Build an intelligent developer assistant that understands how a software reposit
 
 ## Project Status
 
-**Current Phase: Repository Ingestion Foundation**
+**Current Phase: Repository Ingestion and Code Structure Extraction**
 
-The initial repository scanning engine is implemented and tested.
+The repository scanning engine and initial Python AST extraction engine are implemented and tested.
 
 Current validation:
-- 10 automated tests passing
+
+- 16 automated tests passing
 - Ruff code-quality checks passing
 - Successfully tested against an external Python repository
-- Verified directory and file exclusion behavior
+- File metadata and repository statistics extracted
+- Python functions, classes, and imports identified
+- Syntax errors handled during code extraction
 
 The project is under active development. Features listed under Planned are not yet implemented.
 
 ## Roadmap
 
-1. Repository ingestion and scanning
-2. Code structure and symbol extraction
-3. Repository analytics
+1. Repository ingestion and scanning — Completed
+2. Python code structure and symbol extraction — Completed
+3. Advanced repository analytics and visualization
 4. Semantic indexing and search
 5. Local LLM integration
 6. Retrieval-Augmented Generation
 7. Evidence-based question answering
-8. Evaluation and performance improvements
+8. AI-assisted bug investigation and evaluation
 9. Streamlit-based developer interface
 
 ## Future Goal
